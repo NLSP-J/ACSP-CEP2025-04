@@ -2,6 +2,7 @@ import pygame
 import random
 import sys
 import math
+import asyncio
 
 # Initialize pygame
 pygame.init()
@@ -121,7 +122,7 @@ def circle_rect_collision(circle_x, circle_y, radius, rect):
     return distance < radius
 
 # Game loop
-def main():
+async def main():
     global blob_x, blob_y, powerup, bullets, powerup_spawn_time, invincible_until, powerup_active_until, blob_speed, score, current_time
     running = True
     while running:
@@ -193,7 +194,8 @@ def main():
         show_score(score)
 
         pygame.display.update()
+        await asyncio.sleep(0)
 
     pygame.quit()
 
-main()
+asyncio.run(main())
